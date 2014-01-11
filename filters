@@ -1,0 +1,41 @@
+filters theses are used to format the value of expression for display to the user.
+
+underlying api is $filterprovider.
+
+
+-Using filters in view templates.
+
+filters can be applied to expressions in view templates using the following syntax.
+{{ expression | filter }}
+
+eg.
+{{ 12 | currency}} formets the no 12 as a currency.using the currency filter.
+
+also note that filters can also be chained.
+
+{{ expression | filter | filter }};
+
+filters can also be applied to the result of another filter. this is called chaining.
+{{ expression | filter1 | filter2 }}
+
+Filters may have arguments. the syntax for it is this.
+{{ expression | filter:argument1:argument2 }}
+
+this format the number 1234 in 2 decimal places.
+{{ 1234 | number:2 }}
+
+
+Using filters in controllers and services.
+For this add the dependency with the name of the filter. <filterName>Filter to your
+controller or service.Using the dependency numberFilter.
+
+the below example uses a filter  called filter. this filter reduces arrays into subarrays.
+
+this filter can be applied in a markup template like this.
+
+{{ ctrl.array | filter:'a'}}
+
+note that hoever using filter in a view can be costly if the array is big.
+so here we call the filter direcly in the controller.
+
+You can see more on filters in my plunker.
