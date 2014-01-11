@@ -1,0 +1,147 @@
+Controller.
+These are contructor functions that are used to augment scope.
+
+- each time a controller is attached to the dom. angular will instantiate a new constructor object.
+
+Controllers can be used to set up the initial state of the child scope object.
+
+Use controllers to
+add behaviour to the $scope object.
+set up initial state of the scope object.
+
+
+
+- Setting Up the Initial State of $scope Object.
+
+The following example shows a simple construction function for a controller.
+
+function GreetingCtrl($scope) {
+	$scope.greeting = 'hola!;
+}
+
+<div ng-controller="GreetingCtrl">
+	{{ greeting }}
+</div>
+
+Although angular allows you to create controller functions in the global scope.
+in the real world it is not recommended. Always use the .controller method.
+
+var myApp = angular.module('myApp', []);
+
+myApp.controller('GreetingCtrl', ['$scope', function ($cope) {
+	$scope.greeting = 'hola';
+}]);
+
+here we used inline injection to explicity specify the dependency of the controller on the scope.
+
+<div ng-controller="DoubleCtrl">
+	Two times <input ng-model="num">equals {{ double(num) }}
+</div>
+
+Remember that controllers should not do too much. it should contain only the business logic of a single view.
+
+
+	Do not use controllers for.
+- any kind of dom manipulation. controllers should contain only business logic.
+- input formating. use angular form controls instead.
+- output filtering. use angular filters instead.
+- sharing stateless or useful code across controllers - Use angular services.
+
+Check out the following example.
+i think everything is in the developers guide.
+
+Scope Inheritance.
+ng-controller always creates a new child scope.
+we get a hierarchy of scope that inherits from each other.
+
+<html ng-app="scopeInheritance">
+  <head>
+    <script src="http://code.angularjs.org/1.2.7/angular.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div ng-app="scopeInheritance" class="spicy">
+      <div ng-controller="MainCtrl">
+        <p>Good {{timeOfDay}}, {{name}}!</p>
+    
+        <div ng-controller="ChildCtrl">
+          <p>Good {{timeOfDay}}, {{name}}!</p>
+    
+          <div ng-controller="GrandChildCtrl">
+            <p>Good {{timeOfDay}}, {{name}}!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
+
+Steps involved in testing controllers.
+
+'use strict';
+
+describe('Controller: MainCtrl', function () {
+
+  // load the controller's module
+  beforeEach(module('testAppController'));
+
+  var MainCtrl,
+      mainScope;
+
+  // Initialize the controller and a mock scope
+  beforeEach(inject(function ($controller, $rootScope) {
+    
+    //creating an instance of our mainscope from the rootscope
+    mainScope = $rootScope.$new();
+    
+    //Initialising the mainCtrl from our mainScope
+    MainCtrl = $controller('MainCtrl', {$scope: mainScope} );
+  }));
+
+  it('should attach a list of awesomeThings to the scope', function () {
+    expect(mainScope.awesomeThings.length).toBe(3);
+    expect(mainScope.awesomeThings[0]).toBe('html5 boilerplate');
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
