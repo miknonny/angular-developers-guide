@@ -1,0 +1,7 @@
+Templates.
+these consist of.
+
+Directive - an attribute or element existing in the dom
+Markup - the double curly braces {{}};
+Filter - formats data to be displayed to the user.
+form controls - lets you validate user input.
