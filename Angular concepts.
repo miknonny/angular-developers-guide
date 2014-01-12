@@ -1,0 +1,42 @@
+Angular concepts.
+
+Templates - html with additional markup.
+Directives - extended html custom attributes and elements.
+Model - data that is shown to the user with which the user interects.
+
+
+Scope - Context that the model is stored so that controllers directives and expressions can access it.
+
+Expression - access variables and  functions from scope.
+
+Compiler - parses the templates and instantiates directives and expression.
+
+filter - formats the value of an expression for display to  the users.
+
+View - what the user sees.
+
+Databinding - sync the data between model and view.
+
+dependency Injection - Creates and writes objects.
+
+injector - dependency injection container.
+
+service - reusable business logic of the view.
+
+
+A little different note.
+
+ng-init="qty=1;cost=2"
+we can use ng-init to declare variables within the template.
+
+Directives - These are so called because they apply special behaviour to attributes or elements.
+
+Two way data binding.
+When ever the input value changes, the value of the expression is automatically calculated. and the dom is updated with the values.
+
+
+Makr sure to look at the angular conceptual overview to understand services better.
+
+
+
+
