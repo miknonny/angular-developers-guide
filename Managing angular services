@@ -1,0 +1,6 @@
+Managing angular services
+To declare dependency you need to specify the factory function signature and anotate the function with which to inject.
+
+function myModuleCfgFn($provide) {
+  $provide.factory('myService', ['dep1', 'dep2', function(dep1, dep2) {}]);
+}
