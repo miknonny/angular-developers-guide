@@ -1,0 +1,54 @@
+Creating services.
+
+Anguar offers several useful services.
+For non trivial application you will find it useful to write your own service.
+
+There are two ways of creating services.
+
+1. Module Api.
+
+var myModule = angular.module('myModule', []);
+myModule.factory('serviceId', function () {
+	var shinyNewServiceInstance;
+	//factory function bodythat constructs shinyNewServiceInstance
+	return shinyNewServiceInstance;
+});
+
+
+Using the $provide service.
+
+angular.module('myModule', [], function ($provide) {
+	$provide.factory('serviceId', function () {
+	var shinyNewServiceInstance;
+	//factory function body that constructs shinyNewSericeInstance
+	return shinyNewServiceInstance;
+	});
+});
+
+
+//Note that you are registering a service instance not a factory function that will create the instance when called.
+
+Dependencies.
+Note that services can not only be depended on but can also have their own dependencies.
+lets looks at the followin g service that depends on the $window service.
+which is passed as a parameter to the the factory function.
+
+angular.module('myModule', [], function ($provide) {
+	$provide.factory('notify', ['$window', function (win) {
+		var msgs = [];
+		return function (msg) {
+			msg.push(msg);
+			if (msg.length === 3) {
+				win.alert(msgs.join('\n'));
+				msg = [];
+			}
+		};
+	}]);
+});
+
+
+Instantiating Angular service.
+All services in angular are instantiated lazily.
+this means that a service will be created only once when neeeded. Angular will not instantiate  a service unless it is requested directly by the application.
+
+
