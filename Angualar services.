@@ -1,0 +1,28 @@
+Angualar services.
+
+thses are singleton objects that carry out tasks common to webapps.
+eg. $http service. this provides access to browser XMLHttpRequest object.
+
+Like with other identifier the built in service always start wtih $http.
+
+
+Using a Service.
+To use an angular service you identify it as a dependency for the component.
+(controller service filter or directive).
+
+note that the angular service depends on  the on the contructor patttern.
+
+The dependency is passed into components factory constructor function.
+
+using angular services.
+
+myModule.factory('myService', ['$http', myserive function])
+
+the purpose of the  service factory function is to generate a single object or function that represents the service.
+
+Note that angular factory functions are executed lazily. they are only executed when they are need to satisfy tha dependency.
+
+Every thig that is dependent on the object gets a reference to to the single instance.
+
+
+
