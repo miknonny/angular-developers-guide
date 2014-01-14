@@ -1,0 +1,85 @@
+
+
+Thing to note about injecting service to controllers.
+
+1. 
+what is happening here.
+
+mycontroller has two services $loc and #log.
+later these two services are injected.
+
+function myController ($loc, $log) 
+	this.firstmethod = function () {
+		//use the location service.
+		$loc.sethash();
+	};
+
+	this.secondMethod = function () {
+		//use to log service.
+		$log.info ('...');
+	}
+}
+
+
+//which service is inject ?
+myController.$inject = ['$location', '$log'];
+
+angular.module('MyServiceModule', [])
+	.factory('notify', ['$window', function (win) {
+		var msgs = [];
+		return function (msg) {
+			msgs.push(msg);
+			if (msgs.length === 3) {
+				win.alert(msgs.join("\n"));
+				msg = [];
+			}
+		};
+	}]);
+
+function myController(scope, notifyService) {
+	scope.callNotify = function (msg) {
+		notifyService(msg);
+	}
+}
+
+//lastly er inject the parameters.
+
+myControllers.$inject = ['$scope', 'notify'];
+
+we created the module.
+gave it a factory service notify.
+injected the window scope into the notify factory.
+returned a function that prints an alert if the no of messages id equal to  3
+as the service.
+
+
+
+we bounded a callnotify to the controller scope. which uses the injected notify service which we will later inject as notify in the last part of the code.
+
+below.
+now we inject both $scope and 'notify';
+myController.$inject = ['$scope', 'notify'];
+
+
+note here that we assing the property ot the controller to an array.
+
+
+An alternative way to do it.
+
+myapp.controller('myController', ['$scope', 'notify', function (scope, notify) {
+	scope.callNotify = function (msg) {
+		notifyService(msg);
+	}
+}])
+
+the name of service in inject propetty must match that injected into the controller.
+
+
+
+
+
+
+
+
+
+
