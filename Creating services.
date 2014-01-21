@@ -1,0 +1,50 @@
+Creating services.
+there are two ways here.
+
+we can either use the module factory api.
+
+$provide api inside the module factory function.
+
+
+
+
+var myModule = angular.module('myModule', []);
+
+myModule.factory('serviceId', function () {
+	var shinyNewServiceInstance;
+	return shinyNewServiceInstance;
+});
+
+
+
+angular.module('mymodule', [], function ($provide) {
+	$provide.factory('serviceId', fuction () {
+		var shinyNewServiceInstance;
+		return shinyNewServiceInstance;
+	});
+});
+
+/**
+var myServiceApp = angular.module('myServiceApp', []);
+
+
+// the function that preceeds $window is for dependency injection.
+// 
+myServiceApp.factory('notify', ['$window', function (win) {
+	var msgs = [];
+	//we assign the return function to notify;
+	return function (msg) {
+		msgs.push(msg);
+		if (msgs.length === 3) {
+			win.alert(msgs.join('\n'));
+			msgs = [];
+		}
+	};
+}]);
+
+myServiceApp.controller('MainCtrl', ['$scope', 'notify', function ($scope, notify) {
+	$scope.callNotify = function (msg) {
+		notify(msg);
+	};
+}]);
+**/

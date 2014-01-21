@@ -1,0 +1,18 @@
+A note on providers.
+Providers.
+Apps are wired together using injetor service.
+
+Injector creates two typed of objects services and specialised objects.
+
+-> Services are objects whose api is defined by the developer writing the sevice.
+
+-> Specialised Objects confirm to specific angular framework api. these objects are on of controllers, directives, filters an animatiions.
+
+
+Note that the injector needs to know how to create the recipe that you are asking it to create.
+value, factory, service constant and provider.
+
+Value recipe.
+
+var myApp = angular.module('myApp', []);
+myApp.value('clientid', 'a123456321x');
