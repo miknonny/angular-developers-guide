@@ -1,0 +1,64 @@
+Modules
+
+This declaratively specifies how an applications should be bootstrapped.
+
+It is recommended that you break your application into multiple modules like this.
+
+A service module for service declaration.
+A directive module.
+A filter module.
+An application level module which depends on the module above for initializing the code.
+
+
+A module is a collection of configuration and run blocks that gets applied during 
+application bootstrap.
+
+1.  Configuration blocks - gets executed during provider registerations and configuration phase.
+
+2.  Run blocks. gets executed after injection is created. this kickstarts the aplication.
+
+Configuration Blocks.
+
+
+Lets note the following conviniece methods that are equivalent to the config blocks.
+
+
+angular.module('myModule', []);
+	.value('a', 123)
+	.factory('a', function () {return 123; })
+	.directive('directiveName')
+	.filter('filterName')
+
+//this is thesame as.
+
+angular.module('myModule', [])
+	.config(function ($provide, $compileProvider, $filterProvider) {
+		$provide.value('a', 123);
+		$provide.factory('a', function () {return 123; });
+		$compileProvide.directive('directiveName', ...);
+		$filterProvide.register('filterName', ...);
+	});
+
+Creatiion versus retrieval of module.
+
+
+var myModule = angular.module('myModule', []);
+
+//adding some directives and services.
+
+myModule.service('myservice'); 
+
+myModule.service('myDirective');
+
+//overites both service and directive by creating a new module.
+
+var myModule = angular.module('myModule', []);
+//this throws an error if the other module has not yet been defined.
+
+
+var myModule = angular.module('myOtherModule');
+
+
+
+
+
