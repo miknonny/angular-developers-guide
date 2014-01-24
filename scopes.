@@ -1,0 +1,47 @@
+scopes.
+note scopes are attached to DOM as $scope data property an can be retrieved for debugging purposes.
+
+the rootScope in defined bu the location of ng-app directive.
+
+Note that scope can propagate events in similar version as dom events.this event is broadcasted to the scope children or emitted to the scope parents.
+
+Scope life cycle.
+
+1. 
+creation.
+the root scope  is created during the application bootstrap by $injector. During template linking.
+
+2.
+Watcher registeration.
+directives register watches on scope.
+
+3.
+Model mutation.
+Mutations can be properly watched with $scope.apply. note that angular does this explicity so no extra $apply is required.
+
+4. 
+Mutation Observation.
+At the end angular performs $digest cycle on the rootscope.
+this is propagated through out all the child scopes.
+
+5.
+scope destruction.
+When the scope is no longer needed it is the responsiblity of the child scope
+creator to destroy them via scope.$destroy
+
+
+Scopes and directives.
+There are two kind of directives.
+Observing directives registers listeners using the $watch() method.
+listening directive. such as the ng-click. registers a listener with the dom.
+
+Directives that create scopes.
+ng-repeat and ng-controller create  new child scopes.
+
+
+Controllers and scopes.
+Scopes and controllers interact with each other in the following way.
+controllers use scopes to expose controller methods.
+controller methods can mutate the model properties.
+controllers can also register watches on the models.
+
