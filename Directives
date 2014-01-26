@@ -1,0 +1,110 @@
+Directives are markers on dom elements.
+such as attributes element names and css classes.
+
+
+this tells angulars $compile to attach a specific behaviour 
+
+examples are ngBind and ngModel and also ngView.
+
+Note that much as you create controllers and services. You can create directives for 
+angular to use.
+
+
+
+What does it mean to compile a html template?
+this means attaching event listeners to html to make it interactive.
+
+make sure to use the dash delimited version for directives.
+
+$compile can match elemets based on 
+
+note that directives are registered on the module api using module.direcitive api;
+this takes the normalised directive name followed by the factory function.
+
+Note that we can use directives to simplify our template in cased of code that are repited multiple times.
+
+Note that after $compile and links <div myCustomer> it will try to match the directives on the elements children.
+
+Unless your template is small it is usual best to break it up into its own html file.
+
+Note than when you create a directive it is restricted to attribute only directive.
+simply putting <my-customer> only simply does not work.
+
+Note that the restrict option is typically set to.
+
+'A' - only matches the attribute.
+'E' - only matches the element.
+'AE' - matches either attribute or element.
+
+When to use attribute versus when to use elements.
+Use an element when you are creating  component that is in control of the template.
+use a attribute when you are decorating an exsiting element with a new functionality.
+
+
+Note that we can seperate the scope inside the directive from the scope outside.
+
+Note that isolate scopes isolates every thing except models that where explicitly added to the scope.
+
+
+lets create a directive that can manipulate the dom.
+
+
+elements that want to manipulate the dom typically uses the link option.
+function link (scope, element, attrs) { ... } where:
+
+scope is the angular scope Object.
+element is the jqlite-wrapped element that the directive mat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
